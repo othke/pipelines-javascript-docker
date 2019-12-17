@@ -1,0 +1,25 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+variables:
+  DOCKER_BUILDKIT: 1
+  imageName: 'pipelines-javascript-docker'
+
+steps:
+- script: ls -al
+- task: Docker@2
+  displayName: Build an image
+  inputs:
+    containerRegistry: 'othAcrDev'
+    repository: '$(imageName)'
+    command: 'build'
+    Dockerfile: 'app/Dockerfile'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'othAcrDev'
+    repository: '$(imageName)'
+    command: 'push'
