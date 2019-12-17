@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: othkepipelinesjavascriptdocker 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: othkepipelinesjavascriptdocker 
+    spec:
+      containers:
+        - name: othkepipelinesjavascriptdocker 
+          image: othacrdev.azurecr.io/othkepipelinesjavascriptdocker
+          ports:
+          - containerPort: 8080
